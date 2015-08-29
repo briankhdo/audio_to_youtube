@@ -262,7 +262,7 @@ private
 
 		# ensure libraries are actually installed
 		unless (os.path.exists(ffprobe) and os.path.exists(ffmpeg))
-			exitWithError("FFmpeg couldn\'t be found at \"#{@ffmpegDir}\". "  +
+			exitWithError("FFmpeg couldn\'t be found at \"#{@ffmpegDir}\". " +
 				'Please check your configuration.')
 		end
 		unless os.path.exists(imagick)
@@ -273,7 +273,21 @@ private
 public
 	################################################################################
 	# Program entrypoint.
-	def self.generate audio, bg, out
+	def self.generate *args
+		audio = nil
+		bg = nil
+		out = nil
+		if args.size < 1 || args.size > 3
+			puts 'This method takes either 1 to 3 arguments'	
+		else
+			audio = args[0]
+			if args.size == 2
+				bg = args[1]
+			elsif args.size == 3
+				bg = args[1]
+				out = args[2]
+			end	
+		end 
 
 		bg ||= @tempBg
 		out ||= @outputFile
