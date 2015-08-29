@@ -1,4 +1,3 @@
-% cat hola.gemspec
 Gem::Specification.new do |s|
   s.name        = 'audio_to_youtube'
   s.version     = '1.0.0'
